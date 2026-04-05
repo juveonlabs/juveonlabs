@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,10 +27,10 @@ export default function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-[100] p-3.5 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-[0_10px_30px_rgba(147,51,234,0.3)] hover:shadow-[0_15px_40px_rgba(147,51,234,0.5)] hover:bg-blue-700 hover:scale-110 active:scale-95 transition-all duration-300 group border border-blue-400/30"
+      className="fixed bottom-8 right-8 z-[100] px-4 py-2 md:px-5 md:py-3 border-[3px] border-[#111] bg-white text-[#111] font-bold mono-text uppercase text-[10px] md:text-xs shadow-[4px_4px_0_rgba(17,17,17,1)] hover:bg-[#111] hover:text-white hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0_rgba(17,17,17,1)] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none transition-all flex items-center justify-center gap-2 group"
       aria-label="Back to top"
     >
-      <ArrowUp size={20} strokeWidth={2.5} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
+      <span className="hidden md:inline">SYSTEM.</span>TOP <span className="group-hover:-translate-y-1 transition-transform">[ ^ ]</span>
     </button>
   );
 }

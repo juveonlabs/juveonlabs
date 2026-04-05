@@ -1,7 +1,18 @@
 import React, { useEffect } from 'react';
-import Footer from './Footer.jsx';
-import { ArrowLeft, Mic, PhoneCall, Headphones, ArrowRight, Zap, Target } from 'lucide-react';
+import Navbar from './components/Navbar';
+import AudioScanner from './components/AudioScanner';
 import { useNavigate } from 'react-router-dom';
+
+const FeatureBlock = ({ title, description, index }) => (
+  <div className="border border-black/10 p-6 transition-all hover:bg-black/5 bg-white/60 backdrop-blur-md relative overflow-hidden group">
+    <div className="border-b border-black/10 mb-4 pb-4 flex justify-between items-end relative z-10">
+      <h3 className="text-xl ndot-text uppercase">{title}</h3>
+      <span className="text-[10px] font-bold opacity-40">STEP {index}</span>
+    </div>
+    <p className="text-sm font-medium opacity-70 uppercase leading-relaxed mono-text relative z-10">{description}</p>
+    <div className="absolute left-0 bottom-0 w-0 h-1 bg-red-500 transition-all duration-500 group-hover:w-full" style={{ backgroundColor: 'var(--glitch-red)' }} />
+  </div>
+);
 
 export default function CallAgents() {
   const navigate = useNavigate();
@@ -11,102 +22,78 @@ export default function CallAgents() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#faf9fc] font-display selection:bg-blue-200 selection:text-blue-900 flex flex-col items-center overflow-hidden">
-      
-      {/* Decorative background elements */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-200/40 rounded-full blur-[100px]" />
-        <div className="absolute top-[20%] right-[-5%] w-[600px] h-[600px] bg-blue-200/40 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.2]" style={{ backgroundImage: 'radial-gradient(#2563eb 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }} />
-      </div>
+    <div className="bg-grid min-h-screen flex flex-col font-display selection:bg-red-500 selection:text-white">
+      <Navbar />
 
-      {/* Embedded Navigation */}
-      <nav className="relative z-50 w-full px-6 py-4 lg:px-8">
-        <div className="max-w-7xl mx-auto cursor-pointer" onClick={() => {
-            navigate('/');
-            setTimeout(() => {
-              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-          }}>
-          <div className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-700 transition-colors font-medium backdrop-blur-md bg-white/50 px-4 py-2 rounded-full border border-gray-200 shadow-sm hover:shadow active:scale-95 duration-200">
-            <ArrowLeft size={16} /> Back to Services
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-4 lg:py-6 flex-grow flex flex-col justify-center">
+      <div className="max-w-7xl mx-auto px-6 py-16 flex-1 w-full flex flex-col lg:flex-row gap-16 relative z-10">
         
-        {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase mb-3 shadow-sm">
-            <Mic size={14} /> Autonomous Voice Tech
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-gray-900 mb-4 leading-tight">
-            Conversations that <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Never Sleep.</span>
-          </h1>
-          <p className="text-base md:text-lg text-gray-600 leading-relaxed font-medium">
-            Handle inbound and outbound calls with intelligent voice agents that manage customer interactions, qualify leads, and route conversations—24/7 without human intervention.
-          </p>
-        </div>
-
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-8 md:mb-10 relative">
+        {/* Sidebar Header & Graphic */}
+        <div className="lg:w-1/3 flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
+          <button 
+            onClick={() => navigate('/')}
+            className="retro-btn self-start"
+          >
+             <span className="mr-2">&lt;</span> BACK TO MAIN
+          </button>
           
-          <div className="bg-white/70 backdrop-blur-2xl border border-gray-200/50 rounded-3xl p-5 md:p-6 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4 border border-blue-200 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-              <PhoneCall size={20} />
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-2 group-hover:text-blue-700 transition-colors">Inbound & Outbound</h3>
-            <p className="text-gray-600 font-medium leading-relaxed text-sm">
-              Dynamically dial out to leads instantly or take high-volume inbound service calls. Never miss a single opportunity.
-            </p>
+          <div className="w-full max-w-[320px]">
+            <AudioScanner />
           </div>
-
-          <div className="bg-white/70 backdrop-blur-2xl border border-gray-200/50 rounded-3xl p-5 md:p-6 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4 border border-blue-200 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-              <Target size={20} />
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-2 group-hover:text-blue-700 transition-colors">Lead Qualification</h3>
-            <p className="text-gray-600 font-medium leading-relaxed text-sm">
-              Voice AI naturally converses with prospects to gather data, schedule appointments, and push qualified leads to your CRM.
-            </p>
+          
+          <div>
+            <h1 className="text-5xl uppercase tracking-tighter mb-2 ndot-text">VOICE AGENTS<span className="animate-pulse opacity-50">_</span></h1>
+            <p className="text-xs uppercase font-bold text-red-500 mono-text tracking-widest" style={{ color: 'var(--glitch-red)' }}>AUTONOMOUS COMMS</p>
           </div>
-
-          <div className="bg-white/70 backdrop-blur-2xl border border-gray-200/50 rounded-3xl p-5 md:p-6 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4 border border-blue-200 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-              <Headphones size={20} />
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-2 group-hover:text-blue-700 transition-colors">Advanced Routing</h3>
-            <p className="text-gray-600 font-medium leading-relaxed text-sm">
-              When situations get overly complex, the AI instantly bridges the call to the appropriate highly-skilled human operator.
-            </p>
-          </div>
-
         </div>
 
-        {/* CTA Banner */}
-        <div className="w-full max-w-4xl mx-auto bg-gradient-to-br from-blue-600 to-indigo-800 rounded-3xl p-6 lg:p-8 text-center shadow-2xl relative overflow-hidden mb-8 md:mb-12 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 blur-[1px]"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight leading-tight text-left md:text-left">
-              Replace rigid phone trees with <br className="hidden md:block"/> seamless artificial intelligence.
+        {/* Content Area */}
+        <div className="lg:w-2/3">
+          <div className="border-l-2 border-red-500 pl-4 mb-10" style={{ borderColor: 'var(--glitch-red)' }}>
+            <h2 className="text-3xl uppercase mb-4 leading-tight ndot-text mt-2">
+              Conversations that <br/> 
+              <span style={{ color: 'var(--glitch-red)' }}>NEVER SLEEP.</span>
             </h2>
+            <p className="text-lg mono-text uppercase leading-relaxed font-bold">
+              Handle inbound and outbound calls with intelligent voice agents that manage customer interactions, qualify leads, and route conversations—24/7.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <FeatureBlock 
+              index="01"
+              title="Inbound/Outbound"
+              description="Dynamically dial out to leads instantly or take high-volume inbound service calls. Never miss an opportunity."
+            />
+            <FeatureBlock 
+              index="02"
+              title="Lead Qualification"
+              description="Voice AI naturally converses with prospects to gather data, schedule appointments, and push qualified leads."
+            />
+            <FeatureBlock 
+              index="03"
+              title="Advanced Routing"
+              description="When situations get overly complex, the AI instantly bridges the call to a human operator."
+            />
+          </div>
+
+          <div className="border border-black/10 p-8 text-center bg-white/40 backdrop-blur-md relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-12 h-12 bg-red-500/10 rounded-bl-full pointer-events-none transition-transform group-hover:scale-150" style={{ backgroundColor: 'var(--glitch-red)', opacity: 0.1 }} />
+            <h3 className="text-2xl uppercase mb-6 ndot-text">
+               Replace rigid phone trees with seamless AI.
+            </h3>
             <a
               href="https://calendly.com/juveonlabs"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white whitespace-nowrap text-blue-800 px-6 py-3 rounded-full font-bold text-base inline-flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+              className="retro-btn inline-block text-white bg-black border-none"
             >
-              Build Voice Agent <Zap size={18} className="text-blue-500" />
+              BUILD_VOICE_AGENT.EXE
             </a>
           </div>
+
         </div>
 
       </div>
-
-      <Footer />
-    </main>
+    </div>
   );
 }

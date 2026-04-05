@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.jsx';
@@ -8,22 +8,21 @@ import Workflows from './Workflows.jsx';
 import CallAgents from './CallAgents.jsx';
 import PrivacyPolicy from './PrivacyPolicy.jsx';
 import TermsOfService from './TermsOfService.jsx';
+import Contact from './Contact.jsx';
 import BackToTop from './BackToTop.jsx';
-import CustomCursor from './CustomCursor.jsx';
-import SplashScreen from './SplashScreen.jsx';
+import GamifiedCursor from './components/GamifiedCursor.jsx';
+import ScrollLines from './components/ScrollLines.jsx';
+import Footer from './Footer.jsx';
 import './index.css';
 
-function AppWrapper() {
-  const [showSplash, setShowSplash] = useState(true);
-  const handleSplashComplete = useCallback(() => setShowSplash(false), []);
-
-  return (
-    <>
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-      {!showSplash && (
-        <BrowserRouter>
-          <CustomCursor />
-          <BackToTop />
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <GamifiedCursor />
+      <ScrollLines />
+      <BackToTop />
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-1">
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/agents" element={<Agents />} />
@@ -32,16 +31,12 @@ function AppWrapper() {
             <Route path="/call-agents" element={<CallAgents />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
-        </BrowserRouter>
-      )}
-    </>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AppWrapper />
+        </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
