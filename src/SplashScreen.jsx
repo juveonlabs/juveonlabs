@@ -46,7 +46,7 @@ const SplashScreen = ({ onComplete }) => {
       }}></div>
 
       {/* BIOS Header */}
-      <div className="flex justify-between items-start mb-8 border-b border-[#ff3333]/30 pb-4">
+      <div className="flex justify-between items-start mb-8 border-b border-[#ff3333]/30 pb-4 relative z-20">
         <div className="text-[#ff3333] text-xs md:text-sm font-bold tracking-widest">
           JUVEON_OS // BOOT_SEQUENCE
         </div>
@@ -55,18 +55,56 @@ const SplashScreen = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Terminal Logs */}
-      <div className="flex-1 overflow-hidden space-y-1">
-        {logs.map((log, index) => (
-          <div key={index} className="text-[#ff3333] text-xs md:text-sm flex items-center">
-            <span className="mr-2 opacity-40">&gt;</span>
-            <span className={index === logs.length - 1 ? 'animate-pulse' : ''}>{log}</span>
+      {/* Central Identity Area */}
+      <div className="flex-1 flex flex-col items-center justify-center relative">
+        <div className="absolute inset-0 flex items-center justify-center z-0 opacity-20 pointer-events-none">
+           <img 
+            src="/lOGO.png" 
+            alt="" 
+            className="w-64 h-64 md:w-96 md:h-96 object-contain grayscale invert brightness-[2] contrast-[5] blur-sm animate-pulse" 
+            style={{ filter: 'drop-shadow(0 0 20px #ff3333)' }}
+          />
+        </div>
+        
+        <div className="z-10 w-full max-w-2xl">
+          <div className="flex justify-center mb-12 animate-flicker">
+             <img src="/lOGO.png" alt="Juveon Labs" className="h-16 md:h-24 w-auto object-contain brightness-0 invert" style={{ filter: 'drop-shadow(0 0 10px #ff3333)' }} />
           </div>
-        ))}
-        {logs.length < bootMessages.length && (
-          <div className="text-[#ff3333] animate-pulse">&gt; _</div>
-        )}
+
+          {/* Terminal Logs Area */}
+          <div className="overflow-hidden space-y-1 h-48 bg-black/40 backdrop-blur-sm border border-[#ff3333]/10 p-4 rounded-sm">
+            {logs.map((log, index) => (
+              <div key={index} className="text-[#ff3333] text-xs md:text-sm flex items-center">
+                <span className="mr-2 opacity-40 font-bold">&gt;</span>
+                <span className={index === logs.length - 1 ? 'animate-pulse' : ''}>{log}</span>
+              </div>
+            ))}
+            {logs.length < bootMessages.length && (
+              <div className="text-[#ff3333] animate-pulse">&gt; _</div>
+            )}
+          </div>
+        </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes flicker {
+          0% { opacity: 0.8; }
+          5% { opacity: 0.9; }
+          10% { opacity: 0.8; }
+          15% { opacity: 1; }
+          20% { opacity: 0.8; }
+          25% { opacity: 0.9; }
+          30% { opacity: 1; opacity: 1; transform: translateX(1px); }
+          35% { opacity: 0.8; }
+          40% { transform: translateX(-1px); }
+          45% { opacity: 0.9; }
+          50% { opacity: 1; }
+          100% { opacity: 1; }
+        }
+        .animate-flicker {
+          animation: flicker 2s infinite;
+        }
+      `}} />
 
       {/* Bottom Progress Area */}
       <div className="mt-8 border-t border-[#ff3333]/30 pt-6">
