@@ -4,6 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border-left: 1px solid rgba(0,0,0,0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border: 2px solid var(--bg-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 :root {
   /* Permanent Matte White Theme */
   --bg-color: #f7f7f7;

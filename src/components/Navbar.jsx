@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-10 w-full">
         
         <div className="flex items-center gap-3 cursor-pointer group glitch-hover" onClick={() => navigate('/')}>
-          <img src="/lOGO.png" alt="Juveon Labs Logo" className="w-8 h-8 object-contain" />
+          <img src="/Logo.png" alt="Juveon Labs Logo" className="w-8 h-8 object-contain" />
           <span className="text-xl md:text-2xl font-bold ndot-text uppercase">
             Juveon Labs
             <span className="animate-pulse ml-1" style={{ color: 'var(--glitch-red)' }}>_</span>

@@ -20,7 +20,7 @@ const Footer = () => {
         {/* Brand Column */}
         <div className="md:col-span-2">
           <Link to="/" className="flex items-center gap-3 mb-4 group">
-            <img src="/lOGO.png" alt="Juveon Labs Logo" className="w-8 h-8 object-contain" />
+            <img src="/Logo.png" alt="Juveon Labs Logo" className="w-8 h-8 object-contain" />
             <span className="text-3xl font-bold uppercase ndot-text tracking-widest">
               <span className="text-[#ff3333]">JU</span>VEON LABS
             </span>
